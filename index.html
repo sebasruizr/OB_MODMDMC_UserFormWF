@@ -1,0 +1,171 @@
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+</head>
+<style>
+  .oculto{
+    display: none;
+  }
+</style>
+<body>
+  <form action="" method="POST">
+    <div class="oculto">
+      Prop tipoMsj <input type="text" name="OB_WFPROPERTY_tipoMsj_1" id="OB_WFPROPERTY_tipoMsj_1" value="Rechazo" /> <br/>
+      Prop alertSAT <input type="text" name="OB_WFPROPERTY_alertSAT_1" id="OB_WFPROPERTY_alertSAT_1" value="True" /> <br/>
+      Prop alertDuplicado <input type="text" name="OB_WFPROPERTY_alertDuplicado_1" id="OB_WFPROPERTY_alertDuplicado_1" value="True" /> <br/>
+      Prop rfcSAT <input type="text" name="OB_WFPROPERTY_rfcSAT_1" id="OB_WFPROPERTY_rfcSAT_1" value="RURP900925MR7" /> <br/>
+      Prop resultSAT <input type="text" name="OB_WFPROPERTY_resultSAT_1" id="OB_WFPROPERTY_resultSAT_1" value="CULPABLE" /> <br/>
+      Prop String HTML Duplicados <textarea  name="OB_WFPROPERTY_htmlDuplicados_1" id="OB_WFPROPERTY_htmlDuplicados_1" value="Un HTML" ></textarea> <br/>
+    </div>
+    <div style="padding-left: 10%; padding-right: 10%; padding-top: 10px;">
+
+      <div class="panel panel-default oculto" id="sec_Head_Rechazos">
+        <div class="panel-body text-center" >
+          <img alt="mz:151;138:ONE;" src="rechazo.jpg" style="width: 50px; height: 50px;"> 
+          <h4> Rechazar Solicitud </h4>
+        </div>
+      </div>
+
+      <div class="panel panel-default oculto" id="sec_Head_AprobarconAlerta">
+        <div class="panel-body text-center">
+          <img alt="mz:151;138:ONE;" src="aprobar.jpg" style="width: 50px; height: 50px;"> 
+          <span> <h4> Esta apunto de aprobar la Solicitud con las siguientes alertas, ¿Esta seguro? </h4> </span>
+        </div>
+      </div>
+
+      <div class="panel panel-danger oculto" id="sec_alert_SAT">
+        <div class="panel-heading"> <span class="glyphicon glyphicon-warning-sign"></span> <span> Articulo 69 - Lista negra del SAT </span> </div>
+        <div class="panel-body text-center">
+          <b>RFC: </b> <span id=txt_rfc> </span> <b> - </b> <span id=txt_resultSAT> </span>
+        </div>
+      </div>
+
+      <div class="panel panel-danger oculto" id="sec_alert_Duplicados">
+        <div class="panel-heading"> <span class="glyphicon glyphicon-warning-sign"></span> <span> Posible duplicidad con clientes existentes en SAP </span> </div>
+        <div class="panel-body">
+          <div class="container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Num Cte SAP</th>
+                  <th>Nombre</th>
+                  <th>Gpo Ctas</th>
+                  <th>Ramo</th>
+                  <th>Direccion</th>
+                </tr>
+              </thead>
+              <tbody id="tablaDuplicados" >
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default oculto" id="sec_motRechazo">
+        <div class="panel-body" style="padding-left: 20%; padding-right: 20%;">
+          <div class="form-group">
+            <label for="OBDataSet_motivoRechazo_1">Motivo de rechazo</label>
+            <select class="form-control" name="OBDataSet_motivoRechazo_1" id="OBDataSet_motivoRechazo_1">
+              <option value="">Seleccione...</option>
+              <option value="Caracteres no permitidos">Caracteres no permitidos</option>
+              <option value="Cliente Duplicado">Cliente Duplicado</option>
+              <option value="Documento adjunto no visible">Documento adjunto no visible</option>
+              <option value="Falta Documentación">Falta Documentación</option>
+              <option value="Comprobante de domicilio Vencido">Comprobante de domicilio Vencido</option>
+              <option value="Falta Vobo">Falta Vobo</option>
+              <option value="Información errónea">Información errónea</option>
+              <option value="Lista Negra del SAT">Lista Negra del SAT</option>
+              <option value="Otros">Otros</option>
+            </select>
+            <label for="OBKey_motivoRechazo_1">Detalles del rechazo</label>
+            <textarea class="form-control" name="OBKey_motivoRechazo_1" id="OBKey_motivoRechazo_1"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default" id="sec_buttons">
+        <div class="panel-body text-center">
+          <input type="submit" name="OB_Yes" class="btn btn-success oculto" value="Aprobar" id="btn_Aprobar">
+          <input type="submit" name="OB_Yes" class="btn btn-danger oculto" value="Rechazar" id="btn_Rechazar">
+          <input type="submit" name="OB_Cancel" class="btn btn-default oculto" value="Cerrar" id="btn_Cerrar">
+          <input type="submit" name="OB_Cancel" class="btn btn-default oculto" value="Cancelar" id="btn_Cancelar">
+        </div>
+      </div>      
+
+    </div>
+  </form>
+</body>
+</html>
+<script type="text/Javascript">
+  var strHtml = `<tr>
+                  <td>1020304050</td>
+                  <td>Abarrotes Don Toño</td>
+                  <td>Z001</td>
+                  <td>Z005</td>
+                  <td>CP 01456 Av Refeorma Las Flores</td>
+                </tr>      
+                <tr class="warning">
+                  <td>1060708090</td>
+                  <td>Don Toño</td>
+                  <td>Z005</td>
+                  <td>Z005</td>
+                  <td>CP 01456 Miguel Hidalgo Las Flores</td>
+                </tr>`;
+  var tipoMsj = document.getElementById('OB_WFPROPERTY_tipoMsj_1');
+  var alertSAT = document.getElementById('OB_WFPROPERTY_alertSAT_1');
+  var alertDuplicado = document.getElementById('OB_WFPROPERTY_alertDuplicado_1');
+  var rfcSAT = document.getElementById('OB_WFPROPERTY_rfcSAT_1');
+  var resultSAT = document.getElementById('OB_WFPROPERTY_resultSAT_1');
+  var htmlDuplicados = document.getElementById('OB_WFPROPERTY_htmlDuplicados_1');
+  htmlDuplicados.value = strHtml;
+
+  var sec_Head_Rechazos = document.getElementById('sec_Head_Rechazos');
+  var sec_Head_AprobarconAlerta = document.getElementById('sec_Head_AprobarconAlerta');
+  var sec_alert_SAT = document.getElementById('sec_alert_SAT');
+  var sec_alert_Duplicados = document.getElementById('sec_alert_Duplicados');
+  var sec_motRechazo = document.getElementById('sec_motRechazo');
+  
+  var btn_Aprobar = document.getElementById('btn_Aprobar');
+  var btn_Rechazar = document.getElementById('btn_Rechazar');
+  var btn_Cerrar = document.getElementById('btn_Cerrar');
+  var btn_Cancelar = document.getElementById('btn_Cancelar');
+
+  alert(tipoMsj.value);
+
+  switch (tipoMsj.value) {
+    case 'Rechazo':
+      sec_Head_Rechazos.style.display = 'block';
+      sec_motRechazo.style.display = 'block';
+      btn_Rechazar.style.display = 'inline';
+      btn_Cancelar.style.display = 'inline';
+      break;
+    case 'AprobarAlerts':
+      sec_Head_AprobarconAlerta.style.display = 'block';
+      btn_Aprobar.style.display = 'inline';
+      btn_Cancelar.style.display = 'inline';
+      break;
+    case 'alertOnly':
+      btn_Cerrar.style.display = 'inline';
+      break;
+    default:
+
+      break;
+  }
+  if(alertSAT.value == "True")
+  {
+    sec_alert_SAT.style.display = 'block';
+    document.getElementById('txt_rfc').innerHTML = rfcSAT.value;
+    document.getElementById('txt_resultSAT').innerHTML = resultSAT.value;
+  }
+  if(alertDuplicado.value == "True")
+  {
+    sec_alert_Duplicados.style.display = 'block';
+    document.getElementById('tablaDuplicados').innerHTML = htmlDuplicados.value; 
+  }
+</script>
